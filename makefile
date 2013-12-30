@@ -3,6 +3,9 @@ CC = clang
 CFLAGS = -O2 -march=native -mtune=native
 C_LIBFLAGS = -FPIC
 
+# Install
+INSTALL_PREFIX = /usr/local
+
 # BEGIN OS-Dependent Flags
 
 UNAME_S = $(shell uname -s)
@@ -21,6 +24,12 @@ all:	build/libnix.$(LIB_XTENSION)
 
 test:	all
 	@echo "No tests available ATM, sorry."
+
+install:	all
+	install build/libnix.$(LIB_XTENSION) $(INSTALL_PREFIX)/lib
+
+uninstall:	install
+	rm -vf $(INSTALL_PREFIX)/lib/libnix.$(LIB_XTENSION)
 
 clean:	build
 	rm -rvf build
