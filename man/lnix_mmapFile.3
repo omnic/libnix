@@ -1,0 +1,66 @@
+.TH LNIX_MMAPFILE 3 "December 2013" lib*nix "libnix Manual"
+.SH NAME
+.PP
+lnix_mmapFile \- map a file into memory
+.SH LIBRARY
+.PP
+lib*nix (libnix, \-lnix)
+.SH SYNOPSIS
+.PP
+\fB\fC#include <libnix.h>\fR
+.PP
+\fB\fCint lnix_mmapFile\fR \fB\fC(char\fR *\fIfilename\fP\fB\fC,\fR \fB\fClnix_mapFileStruct\fR *\fImapfile\fP\fB\fC);\fR
+.SH DESCRIPTION
+.PP
+The \fB\fClnix_mmapFile\fR() function maps the file specified by the \fIfilename\fP into
+memory using the parameters specified in the \fImapfile\fP\&. It also stores the
+result into \fImapfile\fP, meaning that \fB\fClnix_mremapFile\fR() can be called on the
+same \fImapfile\fP to change the size of the file. When the file is no longer
+needed in memory, a quick call to \fB\fClnix_munmapFile\fR will unmap the file from
+memory.
+.SH RETURN VALUES
+.PP
+If successful, \fB\fClnix_mmapFile\fR will return zero. Otherwise, it will return a
+nonzero value as specified below.
+.SH ERRORS
+.PP
+\fB\fC-1\fR
+    Could not \fB\fCopen\fR the file specified by \fIfilename\fP\&.
+.PP
+\fB\fC-2\fR
+    Was not able to \fB\fClock\fR the file with the flags in \fImapfile\fP\fB\fC->\fR\fIlock\fP\&.
+.PP
+\fB\fC-3\fR
+    Could not \fB\fCstat\fR the file; check \fIerrno\fP for the specific error (\fB\fCstat\fR(2)).
+.PP
+\fB\fC-4\fR
+    \fB\fCmmap\fR returned an error; check \fIerrno\fP for the specific error (\fB\fCmmap\fR(2)).
+.SH EXAMPLE
+.PP
+\fB\fCLoading an existing read-only file (which in this case contains text)
+into memory with an exclusive lock.\fR
+.PP
+.RS
+.nf
+// Initialize the struct with values
+lnix_mapFileStruct mapfile;
+mapfile.m_prot = PROT_READ;
+mapfile.m_flag = MAP_FILE | MAP_SHARED;
+mapfile.o_flag = O_RDONLY;
+mapfile.lock   = LOCK_EX;
+mapfile.offset = 0;
+// Call lnix_mmapFile()
+assert (lnix_mmapFile("/path/to/file", &mapfile);
+// Use the resultant memory range
+char *text = mapfile->addr;
+.fi
+.RE
+.SH SEE ALSO
+.PP
+\fB\fClnix_mremapFile\fR(3), \fB\fClnix_munmapFile\fR(3), \fB\fCmmap\fR(2), \fB\fCopen\fR(2), \fB\fCflock\fR(2), \fB\fCstat\fR(2)
+.SH 
+.BR AUTHOR (S)
+.PP
+Written for the OmniC Project \fB\fClib*nix\fR (\fB\fChttps://github.com/omnic/libnix\fR)
+.PP
+by Haneef Mubarak (\fB\fChttps://github.com/haneefmubarak\fR)
