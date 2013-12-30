@@ -3,7 +3,7 @@
 
 #include "libnix.h"
 
-int getlines (char *string, char ***lines, size_t *linecount) {
+int lnix_getlines (char *string, char ***lines, size_t *linecount) {
 	int ptrcount = 256, countscale = 256;
 	char *start, *end;
 
@@ -44,12 +44,12 @@ int getlines (char *string, char ***lines, size_t *linecount) {
 	return 0;
 }
 
-int getSourceFile (mapFileStruct *mapfile, sourceFileStruct *sourcefile) {
+int lnix_getSourceFile (lnix_mapFileStruct *mapfile, lnix_sourceFileStruct *sourcefile) {
 	sourcefile->file = mapfile;
 
 	char *data = mapfile->addr;
 	char ***lines = &sourcefile->line;
 	size_t *linecount = &sourcefile->linecount;
 
-	return getlines (data, lines, linecount);
+	return lnix_getlines (data, lines, linecount);
 }

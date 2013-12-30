@@ -3,7 +3,7 @@
 
 #include "libnix.h"
 
-int mmapFile (char *filename, mapFileStruct *mapfile) {
+int lnix_mmapFile (char *filename, lnix_mapFileStruct *mapfile) {
 	int  x;
 
 	struct stat statbuf;
@@ -44,7 +44,7 @@ int mmapFile (char *filename, mapFileStruct *mapfile) {
 	return 0;
 }
 
-int munmapFile (mapFileStruct *mapfile) {
+int lnix_munmapFile (lnix_mapFileStruct *mapfile) {
 	int x;
 
 	if (!munmap (mapfile->addr, mapfile->len)) {
@@ -58,7 +58,7 @@ int munmapFile (mapFileStruct *mapfile) {
 	return 0;
 }
 
-int mremapFile (off_t newSize, mapFileStruct *mapfile) {
+int lnix_mremapFile (off_t newSize, lnix_mapFileStruct *mapfile) {
 	int status = 0;
 
 	if (!ftruncate (mapfile->fd, newSize)) {

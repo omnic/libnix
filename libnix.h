@@ -33,19 +33,19 @@ typedef struct {
 	int	lock;
 	int	fd;
 	off_t	offset;
-} mapFileStruct;
+} lnix_mapFileStruct;
 
 typedef struct {
-	mapFileStruct	*file;
+	lnix_mapFileStruct	*file;
 	size_t	linecount;
 	char	**line;
-} sourceFileStruct;
+} lnix_sourceFileStruct;
 
 #pragma pack(pop)
 
-int mmapFile		(char *filename, mapFileStruct *mapfile);
-int mremapFile		(off_t newSize, mapFileStruct *mapfile);
-int munmapFile		(mapFileStruct *mapfile);
+int lnix_mmapFile		(char *filename, lnix_mapFileStruct *mapfile);
+int lnix_mremapFile		(off_t newSize, lnix_mapFileStruct *mapfile);
+int lnix_munmapFile		(lnix_mapFileStruct *mapfile);
 
-int getlines		(char *string, char ***lines, size_t *linecount);
-int getSourceFile	(mapFileStruct *mapfile, sourceFileStruct *sourcefile);
+int lnix_getlines		(char *string, char ***lines, size_t *linecount);
+int lnix_getSourceFile		(lnix_mapFileStruct *mapfile, lnix_sourceFileStruct *sourcefile);
