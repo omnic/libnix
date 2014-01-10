@@ -1,5 +1,5 @@
-LNIX_MMAPFILE 3 "January 2014" lib*nix "libnix Manual"
-======================================================
+LNIX_MUNMAPFILE 3 "January 2014" lib*nix "libnix Manual"
+========================================================
 
 NAME
 ----
