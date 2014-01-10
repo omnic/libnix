@@ -1,7 +1,7 @@
 # Basic C-related flags
 CC = clang
 CFLAGS = -O2 -march=native -mtune=native
-C_LIBFLAGS = -FPIC
+C_LIBFLAGS = -fPIC
 
 # Install
 INSTALL_PREFIX = /usr/local
