@@ -27,7 +27,7 @@ a nonzero value as specified below.
     Failed to remap the new range; \fB\fCmmap\fR failed; check \fIerrno\fP for the specific error (\fB\fCmmap\fR(2)).
 .PP
 \fB\fC1\fR
-    Non\-critical error: failed to unmap the old page range.
+    Non\-critical error: failed to unmap the old page range; check \fIerrno\fP for specific error (\fB\fCmunmap\fR(2)).
 .SH EXAMPLE
 .PP
 \fB\fCResizing a mapfile on the fly.\fR
@@ -40,7 +40,7 @@ assert (lnix_mremapfile (mapfile->len + 65536, mapfile) >= 0);
 .RE
 .SH SEE ALSO
 .PP
-\fB\fClnix_mmapFile\fR(3), \fB\fClnix_munmapFile\fR(3), \fB\fCmmap\fR(2), \fB\fCopen\fR(2), \fB\fCflock\fR(2), \fB\fCstat\fR(2)
+\fB\fClnix_mmapFile\fR(3), \fB\fClnix_munmapFile\fR(3), \fB\fCmmap\fR(2), \fB\fCmunmap\fR(2), \fB\fCftruncate\fR(2)
 .SH 
 .BR AUTHOR (S)
 .PP

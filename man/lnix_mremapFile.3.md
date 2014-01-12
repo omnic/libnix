@@ -39,7 +39,7 @@ ERRORS
 	Failed to remap the new range; `mmap` failed; check *errno* for the specific error (`mmap`(2)).
 
 `1`
-	Non-critical error: failed to unmap the old page range.
+	Non-critical error: failed to unmap the old page range; check *errno* for specific error (`munmap`(2)).
 
 EXAMPLE
 -------
@@ -52,7 +52,7 @@ EXAMPLE
 SEE ALSO
 --------
 
-`lnix_mmapFile`(3), `lnix_munmapFile`(3), `mmap`(2), `open`(2), `flock`(2), `stat`(2)
+`lnix_mmapFile`(3), `lnix_munmapFile`(3), `mmap`(2), `munmap`(2), `ftruncate`(2)
 
 
 AUTHOR(S)

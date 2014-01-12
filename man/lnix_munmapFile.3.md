@@ -48,7 +48,7 @@ EXAMPLE
 SEE ALSO
 --------
 
-`lnix_mremapFile`(3), `lnix_munmapFile`(3), `mmap`(2), `open`(2), `flock`(2), `stat`(2)
+`lnix_mmapFile`(3), `lnix_mremapFile`(3), `munmap`(2)
 
 
 AUTHOR(S)
