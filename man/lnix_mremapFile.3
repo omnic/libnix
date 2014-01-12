@@ -1,0 +1,49 @@
+.TH LNIX_MREMAPFILE 3 "January 2014" lib*nix "libnix Manual"
+.SH NAME
+.PP
+lnix_mremapFile \- resize and remap a mapped file in one go
+.SH LIBRARY
+.PP
+lib*nix (libnix, \-lnix)
+.SH SYNOPSIS
+.PP
+\fB\fC#include <libnix.h>\fR
+.PP
+\fB\fCint lnix_mremapFile\fR \fB\fC(off_t\fR \fInewSize\fP\fB\fC,  lnix_mapFileStruct\fR *\fImapfile\fP\fB\fC);\fR
+.SH DESCRIPTION
+.PP
+The \fB\fClnix_mremapFile\fR() function resizes the file specified by \fImapfile\fP to
+the size specified by \fInewSize\fP, after which it remaps the file.
+.SH RETURN VALUES
+.PP
+If successful, \fB\fClnix_mremapFile\fR will return zero. Otherwise, it will return
+a nonzero value as specified below.
+.SH ERRORS
+.PP
+\fB\fC-1\fR
+    \fB\fCftruncate\fR returned an error; check \fIerrno\fP for the specific error (\fB\fCftruncate\fR(2)).
+.PP
+\fB\fC-2\fR
+    Failed to remap the new range; \fB\fCmmap\fR failed; check \fIerrno\fP for the specific error (\fB\fCmmap\fR(2)).
+.PP
+\fB\fC1\fR
+    Non\-critical error: failed to unmap the old page range.
+.SH EXAMPLE
+.PP
+\fB\fCResizing a mapfile on the fly.\fR
+.PP
+.RS
+.nf
+// Increase filesize by 64k while also checking for critical errors
+assert (lnix_mremapfile (mapfile->len + 65536, mapfile) >= 0);
+.fi
+.RE
+.SH SEE ALSO
+.PP
+\fB\fClnix_mmapFile\fR(3), \fB\fClnix_munmapFile\fR(3), \fB\fCmmap\fR(2), \fB\fCopen\fR(2), \fB\fCflock\fR(2), \fB\fCstat\fR(2)
+.SH 
+.BR AUTHOR (S)
+.PP
+Written for the OmniC Project \fB\fClib*nix\fR (\fB\fChttps://github.com/omnic/libnix\fR)
+.PP
+by Haneef Mubarak (\fB\fChttps://github.com/haneefmubarak\fR)
